@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 import datetime
 from django.template import Template, Context
+from django.template.loader import get_template
 
 class Persona(object):
 	def __init__(self, nombre, apellido):
@@ -8,12 +9,18 @@ class Persona(object):
 		self.apellido = apellido
 
 def construtor(request):
+	temasCurso = ["Plantillas","Modelos","Formularios","Vistas","Depliegues"]
 	p1 = Persona("Hernan","Escalante")
-	doc_externo = open("/mnt/c/Users/hescalag/Documents/Hernan/webPanel/PanelWeb/PanelWeb/plantillas/plantilla.html")
-	plt = Template(doc_externo.read())
-	doc_externo.close()
-	contexto = Context({"name":p1.nombre, "lastName":p1.apellido})
-	document = plt.render(contexto)
+	
+	#doc_externo = open("/mnt/c/Users/hescalag/Documents/Hernan/webPanel/PanelWeb/PanelWeb/Templates/template1.html")
+	#plt = Template(doc_externo.read())
+	#doc_externo.close()
+	
+	doc_externo = get_template('template1.html')
+
+	#contexto = Context({"name":p1.nombre, "lastName":p1.apellido, "temas":temasCurso})
+	
+	document = doc_externo.render({"name":p1.nombre, "lastName":p1.apellido, "temas":temasCurso})
 	return HttpResponse(document)
 
 

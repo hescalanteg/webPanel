@@ -1,0 +1,20 @@
+<html>
+	<body>
+		<h1 style="color:blue">Pronto estaremos con ustedes</h1>
+		<h2>
+			{% if name == 'Hernan' %}
+				<p>profesor titular</p>
+			{% endif %}
+		</h2>
+		<h2>{{name.upper}} {{lastName.upper}}</h2>
+		<ul>
+			{% if temas %}
+				{% for eltema in temas %} 
+					<li>{{eltema}}</li>
+				{% endfor %}
+			{% else %}
+				<p>NO HAY ELEMENTOS</p>	
+			{% endif %}
+		</ul>
+	</body>
+</html>
